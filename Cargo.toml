@@ -1,0 +1,49 @@
+[workspace]
+members = [ "crates/*" ]
+
+[workspace.package]
+version = "0.1.2"
+authors = [ "sekun <software@sekun.net>" ]
+edition = "2021"
+license = "BSD-3-Clause"
+repository = "https://github.com/sekunho/moneyman"
+readme = "README.md"
+
+[workspace.dependencies]
+moneyman = { path = "crates/moneyman", version = "0.1" }
+
+## HTTP client
+reqwest = { version = "0.11", features = [ "blocking", "rustls-tls" ], default-features = false }
+
+## Bytes data type
+bytes = { version = "1.4" }
+
+## Handling ZIP archives/buffers
+zip = { version = "0.6" }
+
+## Here comes the moneeeeeyyyy, here comes the money
+rusty-money = { version = "0.4" }
+
+## Date/time stuff
+chrono = "0.4"
+
+## Because I don't want to deal with CSVs, even via polars lol
+rusqlite = { version = "0.29", features = ["bundled", "vtab", "csvtab", "chrono"]  }
+libsqlite3-sys = { version = "0.26.0", features = ["bundled"] }
+
+## Decimal data type
+rust_decimal = "1.29"
+
+## directory stuff
+dirs = "5.0"
+
+## For less error boilerplate
+thiserror = "1.0"
+
+## CLI
+clap = { version = "4.2", features = ["derive"] }
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
